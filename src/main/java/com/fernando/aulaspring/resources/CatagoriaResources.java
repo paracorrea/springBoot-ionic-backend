@@ -2,30 +2,35 @@ package com.fernando.aulaspring.resources;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.StreamingHttpOutputMessage.Body;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fernando.aulaspring.dominio.Categorias;
+import com.fernando.aulaspring.services.CategoriaService;
 
 @RestController
 @RequestMapping(value="/categories")
 public class CatagoriaResources {
 
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Categorias> listar() {
+	
+	@Autowired
+	private CategoriaService service;
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
-		Categorias cat1 = new Categorias(1,"Informatica");
-		Categorias cat2 = new Categorias(2, "Escritório");
-		
-		List<Categorias> lista = new ArrayList<>();
-		lista.add(cat1);
-		lista.add(cat2);
-		
-		
-		return lista;
-		
+		Optional<Categorias> obj = service.buscar(id);
+		return ResponseEntity.ok().body(obj);
 	}
+	
+	
+	
 	
 }
