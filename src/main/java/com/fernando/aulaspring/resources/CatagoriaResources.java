@@ -1,12 +1,12 @@
 package com.fernando.aulaspring.resources;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.StreamingHttpOutputMessage.Body;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,8 +28,17 @@ public class CatagoriaResources {
 		
 		Optional<Categorias> obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
+		
 	}
 	
+	
+	@RequestMapping(value="/todos", method = RequestMethod.GET)
+	public ResponseEntity<?> findAll() {
+		
+		List<Categorias> obj = service.buscarAll();
+		return ResponseEntity.ok().body(obj);
+		
+	}
 	
 	
 	
