@@ -2,7 +2,7 @@ package com.fernando.aulaspring.resources;
 
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,8 @@ public class CatagoriaResources {
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
-		Optional<Categorias> obj = service.buscar(id);
+		
+		Categorias obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
 		
 	}
