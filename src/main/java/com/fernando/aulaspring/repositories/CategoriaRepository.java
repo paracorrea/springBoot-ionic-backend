@@ -8,6 +8,8 @@ import com.fernando.aulaspring.dominio.Categorias;
 public interface CategoriaRepository extends  JpaRepository<Categorias, Integer>{
 
 	
+
+	
 	
 	
 }

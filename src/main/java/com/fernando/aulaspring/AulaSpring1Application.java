@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 import com.fernando.aulaspring.dominio.Categorias;
 import com.fernando.aulaspring.dominio.Produto;
 import com.fernando.aulaspring.repositories.CategoriaRepository;
