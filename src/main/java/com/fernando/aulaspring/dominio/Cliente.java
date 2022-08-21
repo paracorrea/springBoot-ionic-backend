@@ -2,14 +2,17 @@ package com.fernando.aulaspring.dominio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import com.fernando.aulaspring.dominio.enums.TipoCliente;
@@ -27,9 +30,12 @@ public class Cliente implements Serializable{
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
-	@OneToMany
-	@JoinColumn(name="endereco_id")
+	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
+	
+	@ElementCollection
+	@CollectionTable(name="telefone")
+	private Set<String> telefones = new HashSet<>();
 
 	public Cliente() {
 		
@@ -77,6 +83,14 @@ public class Cliente implements Serializable{
 	}
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
+	}
+	
+	
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
 	}
 	@Override
 	public int hashCode() {
