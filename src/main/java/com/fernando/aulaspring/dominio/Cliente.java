@@ -25,8 +25,7 @@ public class Cliente implements Serializable{
 	private String nome;
 	private String email;
 	private String cpfOuCnpj;
-	
-	private TipoCliente tipo;
+	private Integer tipo;
 	
 	@OneToMany
 	@JoinColumn(name="endereco_id")
@@ -41,7 +40,7 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo;
+		this.tipo = tipo.getCod();
 	}
 	public Integer getId() {
 		return id;
@@ -68,10 +67,10 @@ public class Cliente implements Serializable{
 		this.cpfOuCnpj = cpfOuCnpj;
 	}
 	public TipoCliente getTipo() {
-		return tipo;
+		return TipoCliente.toEnum(tipo);
 	}
 	public void setTipo(TipoCliente tipo) {
-		this.tipo = tipo;
+		this.tipo = tipo.getCod();
 	}
 	public List<Endereco> getEnderecos() {
 		return enderecos;
