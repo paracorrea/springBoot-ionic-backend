@@ -1,0 +1,15 @@
+package com.fernando.aulaspring.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.fernando.aulaspring.dominio.Pedido;
+
+// A interface repositorio instancia o banco de dados
+public interface PedidoRepository extends  JpaRepository<Pedido, Integer>{
+
+	
+
+	
+	
+	
+}
