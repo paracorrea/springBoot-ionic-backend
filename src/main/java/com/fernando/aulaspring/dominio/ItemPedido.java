@@ -51,6 +51,7 @@ public class ItemPedido implements Serializable{
 		this.id = id;
 	}
 
+	//teste
 	public Double getDesconto() {
 		return desconto;
 	}
