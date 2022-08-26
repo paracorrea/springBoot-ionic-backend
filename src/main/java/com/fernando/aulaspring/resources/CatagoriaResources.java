@@ -3,6 +3,7 @@ package com.fernando.aulaspring.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.fernando.aulaspring.dominio.Categorias;
+import com.fernando.aulaspring.dto.CategoriaDto;
 import com.fernando.aulaspring.services.CategoriaService;
 
 @RestController
@@ -33,11 +35,15 @@ public class CatagoriaResources {
 	}
 	
 	
-	@RequestMapping(value="/todos", method = RequestMethod.GET)
-	public ResponseEntity<?> findAll() {
+	@RequestMapping(value="/categorias", method = RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDto>> findAll() {
 		
-		List<Categorias> obj = service.findAll();
-		return ResponseEntity.ok().body(obj);
+		List<Categorias> lista = service.findAll();
+		List<CategoriaDto> listaDto = lista
+				.stream()
+				.map(obj -> new CategoriaDto(obj))
+				.collect(Collectors.toList());
+		return ResponseEntity.ok().body(listaDto);
 		
 	}
 	@RequestMapping(method = RequestMethod.POST)
