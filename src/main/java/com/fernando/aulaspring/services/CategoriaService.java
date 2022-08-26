@@ -3,7 +3,6 @@ package com.fernando.aulaspring.services;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +29,11 @@ public class CategoriaService {
 	public List<Categorias> buscarAll() {
 		List<Categorias> lista = repo.findAll();
 		return lista;
+	}
+	
+	public Categorias Insert(Categorias obj) {
+		obj.setId(null);
+		return repo.save(obj);
 	}
 }
 
