@@ -20,19 +20,25 @@ public class CategoriaService {
 	private CategoriaRepository repo;
 	
 	// busca o integer id no repositorio instanciado em repo com o método findByid. Optional permite que se não encontrado retorne nulo
-	public Categorias buscar(Integer id) {
+	public Categorias find(Integer id) {
 		Optional<Categorias> obj = repo.findById(id);
 		
  		return obj.orElseThrow(() -> new ObjectNotFoundException("Objecto não encontrado id: "+id+", tipo: "+Categorias.class.getName()));
 	}
 	
-	public List<Categorias> buscarAll() {
+	public List<Categorias> findAll() {
 		List<Categorias> lista = repo.findAll();
 		return lista;
 	}
 	
 	public Categorias Insert(Categorias obj) {
 		obj.setId(null);
+		return repo.save(obj);
+	}
+
+	public Categorias update(Categorias obj) {
+		
+		find(obj.getId());
 		return repo.save(obj);
 	}
 }

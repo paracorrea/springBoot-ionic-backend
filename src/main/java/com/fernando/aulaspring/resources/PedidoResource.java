@@ -27,7 +27,7 @@ public class PedidoResource {
 	@RequestMapping(value="/pedido/todos", method = RequestMethod.GET)
 	public ResponseEntity<?> findAll() {
 		
-		List<Pedido> obj = pedidoService.buscarAll();
+		List<Pedido> obj = pedidoService.findAll();
 		return ResponseEntity.ok().body(obj)	;
 				}
 }

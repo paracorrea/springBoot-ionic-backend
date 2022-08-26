@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriComponentsBuilder;
-
 import com.fernando.aulaspring.dominio.Categorias;
 import com.fernando.aulaspring.services.CategoriaService;
 
@@ -26,10 +24,10 @@ public class CatagoriaResources {
 	private CategoriaService service;
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Categorias> find(@PathVariable Integer id) {
 		
 		
-		Categorias obj = service.buscar(id);
+		Categorias obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
 	}
@@ -38,7 +36,7 @@ public class CatagoriaResources {
 	@RequestMapping(value="/todos", method = RequestMethod.GET)
 	public ResponseEntity<?> findAll() {
 		
-		List<Categorias> obj = service.buscarAll();
+		List<Categorias> obj = service.findAll();
 		return ResponseEntity.ok().body(obj);
 		
 	}
@@ -48,6 +46,13 @@ public class CatagoriaResources {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Categorias obj, @PathVariable Integer id) {
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 	
 }

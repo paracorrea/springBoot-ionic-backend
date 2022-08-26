@@ -28,7 +28,7 @@ public class PedidoService {
 				"Objecto não encontrado id: " + id + ", tipo: " + Pedido.class.getName()));
 	}
 
-	public List<Pedido> buscarAll() {
+	public List<Pedido> findAll() {
 		List<Pedido> lista = repo.findAll();
 		return lista;
 	}
